@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:fuel_delivary_app_admin/model/scrivce_model.dart';
+import 'package:fuel_delivary_app_admin/services/common/upload_image.dart';
 import 'package:fuel_delivary_app_admin/services/service_mangement_services/service_mangement_service.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -43,8 +44,7 @@ class _ServicesViewState extends State<ServicesView> {
                     }
                     if (image != null) {
                       final imageBytes = image;
-                      selectedImageUrl = await ServiceMangementService()
-                          .uploadImageToStorage(imageBytes);
+                      selectedImageUrl = await ImageService. uploadImageToStorage(image);
 
                       print('Image URL: $selectedImageUrl');
                       setState(
@@ -104,6 +104,7 @@ class _ServicesViewState extends State<ServicesView> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                
                 ElevatedButton.icon(
                   icon: const Icon(Icons.add),
                   label: const Text('Add Sub-Service'),

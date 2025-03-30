@@ -102,9 +102,9 @@ class _UsersViewState extends State<UsersView> {
   // List<User> _getPaginatedUsers() {
   //   final startIndex = _currentPage * _rowsPerPage;
   //   final endIndex = startIndex + _rowsPerPage;
-  //   return _userController.fileteredUsers.length > endIndex
-  //       ? _userController.fileteredUsers.sublist(startIndex, endIndex)
-  //       : _userController.fileteredUsers.sublist(startIndex);
+  //   return _userController.filteredUsers.length > endIndex
+  //       ? _userController.filteredUsers.sublist(startIndex, endIndex)
+  //       : _userController.filteredUsers.sublist(startIndex);
   // }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_delivary_app_admin/utils/constants/colors.dart';
-import 'package:fuel_delivary_app_admin/view/pages/agetn_page.dart';
+import 'package:fuel_delivary_app_admin/view/pages/agent_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/service_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/users_page.dart';
 
@@ -12,7 +12,7 @@ class AdminDashboardScreen extends StatefulWidget {
 }
 
 class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   final List<Widget> _screens = [
     const DashboardView(),
@@ -31,55 +31,10 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
         children: [
           Container(
             width: 280,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2),
-                  blurRadius: 10,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
+            color: Colors.black,
             child: Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 30),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white.withOpacity(0.1),
-                        ),
-                        child: const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 60,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'Admin Panel',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Container(
-                        width: 50,
-                        height: 3,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                const DashboardLeadingIcon(),
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.symmetric(vertical: 10),
@@ -122,34 +77,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.logout_rounded, color: Colors.white),
-                    label: const Text(
-                      'Logout',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    onPressed: () {
-                      // Implement logout logic
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE74C3C),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal: 25,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      elevation: 3,
-                    ),
-                  ),
-                ),
+                const LogOutButton(),
               ],
             ),
           ),
@@ -199,6 +127,90 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
             _selectedIndex = index;
           });
         },
+      ),
+    );
+  }
+}
+
+class LogOutButton extends StatelessWidget {
+  const LogOutButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      child: ElevatedButton.icon(
+        icon: const Icon(Icons.logout_rounded, color: Colors.white),
+        label: const Text(
+          'Logout',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFE74C3C),
+          padding: const EdgeInsets.symmetric(
+            vertical: 15,
+            horizontal: 25,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          elevation: 3,
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardLeadingIcon extends StatelessWidget {
+  const DashboardLeadingIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white.withOpacity(0.1),
+            ),
+            child: const Icon(
+              Icons.person,
+              color: Colors.white,
+              size: 60,
+            ),
+          ),
+          const SizedBox(height: 15),
+          const Text(
+            'Admin Panel',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Container(
+            width: 50,
+            height: 3,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.5),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+        ],
       ),
     );
   }

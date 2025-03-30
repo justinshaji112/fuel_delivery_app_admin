@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:fuel_delivary_app_admin/global.dart';
 import 'package:fuel_delivary_app_admin/theme/theme.dart';
 
 import 'package:fuel_delivary_app_admin/view/pages/home.dart';
@@ -12,21 +12,24 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   setUrlStrategy(PathUrlStrategy());
-  runApp(const MyApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  setUrlStrategy(PathUrlStrategy());
+  runApp(MyApp());
 }
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({
+    super.key,
+  });
+
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const AdminDashboardScreen(),
     );
   }
 }
-
-
