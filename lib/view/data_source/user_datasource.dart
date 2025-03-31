@@ -2,20 +2,20 @@ import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:fuel_delivary_app_admin/common/dialogs/dialogs.dart';
-import 'package:fuel_delivary_app_admin/controller/offer_controller.dart';
+import 'package:fuel_delivary_app_admin/controller/user_controller.dart';
 import 'package:fuel_delivary_app_admin/controller/image_controller.dart';
 import 'package:fuel_delivary_app_admin/global.dart';
-import 'package:fuel_delivary_app_admin/model/offer_model.dart';
-import 'package:fuel_delivary_app_admin/view/dialog/offer_dailogs.dart';
+import 'package:fuel_delivary_app_admin/model/user_model.dart';
+import 'package:fuel_delivary_app_admin/view/dialog/user_dialogs.dart';
 
-class OfferDatasource extends DataTableSource {
-  final List<OfferModel> offers;
-  final OfferController offerController;
-  final Function(OfferModel) onEdit;
+class UserDatasource extends DataTableSource {
+  final List<UserModel> users;
+  final UserController userController;
+  final Function(UserModel) onEdit;
 
-  OfferDatasource(
-      {required this.offerController,
-      required this.offers,
+  UserDatasource(
+      {required this.userController,
+      required this.users,
       required this.onEdit});
 
   @override
@@ -24,22 +24,21 @@ class OfferDatasource extends DataTableSource {
   ) {
     // DataColumn(label: Text('ID')),
     //                         DataColumn(label: Text('Name')),
-    //                         DataColumn(label: Text('Offer')),
+    //                         DataColumn(label: Text('User')),
     //                         DataColumn(label: Text('Price range')),
     //                         DataColumn(label: Text('Status')),
     //                         DataColumn(label: Text('Actions')),
-    // Use the offers list parameter instead of controller's filteredOffers directly
-    if (index >= offers.length) return null;
+    // Use the users list parameter instead of controller's filteredUsers directly
+    if (index >= users.length) return null;
 
-    OfferModel offer = offers[index];
+    UserModel user = users[index];
     return DataRow(cells: [
-      DataCell(Text(offer.id ?? '')),
-      DataCell(Text(offer.name)),
-      DataCell(Text(offer.offerPercentage.toString())),
-      DataCell(Text(
-          "${offer.startingPrice.toString()} - ${offer.endingPrice.toString()}")),
+      DataCell(Text(user.id ?? '')),
+      DataCell(Text(user.name ?? "guest")),
+      DataCell(Text(user.email.toString())),
+      DataCell(Text(user.phone ?? "")),
       DataCell(Chip(
-        label: offer.status == false
+        label: user.status == false
             ? const Text(
                 "Blocked",
                 style: TextStyle(color: Colors.white),
@@ -49,7 +48,7 @@ class OfferDatasource extends DataTableSource {
                 style: const TextStyle(color: Colors.white),
               ),
         color: MaterialStateProperty.all(
-            offer.status == false ? Colors.red : Colors.green),
+            user.status == false ? Colors.red : Colors.green),
       )),
       DataCell(Row(
         children: [
@@ -58,9 +57,8 @@ class OfferDatasource extends DataTableSource {
             onPressed: () {
               BuildContext? context = navigatorKey.currentContext;
               if (context != null) {
-            
-                OfferDialog.addEditOfferDialog(context,
-                    offerController: offerController, offer: offer);
+                UserDialog.addEditUserDialog(context,
+                    userController: userController, user: user);
               }
 
               // Edit action
@@ -72,10 +70,10 @@ class OfferDatasource extends DataTableSource {
               if (navigatorKey.currentContext != null) {
                 bool? delete = await CustomDialogs.delete(
                     navigatorKey.currentContext!,
-                    "Delete Offer",
-                    "Are you sure you want to delete this offer ?");
+                    "Delete User",
+                    "Are you sure you want to delete this user ?");
                 if (delete != null && delete) {
-                  offerController.deleteOffer(offer.id!);
+                  userController.deleteUser(user.id!);
                 }
               }
             },
@@ -89,7 +87,7 @@ class OfferDatasource extends DataTableSource {
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => offers.length; // Use the passed offers list length
+  int get rowCount => users.length; // Use the passed users list length
 
   @override
   int get selectedRowCount => 0;

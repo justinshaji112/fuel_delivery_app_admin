@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_delivary_app_admin/controller/offer_controller.dart';
 import 'package:fuel_delivary_app_admin/controller/image_controller.dart';
-import 'package:fuel_delivary_app_admin/controller/offer_controller.dart';
-import 'package:fuel_delivary_app_admin/model/offer_model.dart';
-import 'package:fuel_delivary_app_admin/utils/validators/form_validators.dart';
-import 'package:fuel_delivary_app_admin/view/dialog/offer_dailog.dart';
-import 'package:fuel_delivary_app_admin/view/widgets/add_service_button.dart';
-import 'package:fuel_delivary_app_admin/view/widgets/image_picker_widget.dart';
+import 'package:fuel_delivary_app_admin/view/dialog/offer_dailogs.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 

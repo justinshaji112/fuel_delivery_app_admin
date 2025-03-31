@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_delivary_app_admin/utils/constants/colors.dart';
 import 'package:fuel_delivary_app_admin/view/pages/agent_page.dart';
+import 'package:fuel_delivary_app_admin/view/pages/carousel_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/offer_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/service_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/users_page.dart';
@@ -13,16 +13,16 @@ class AdminDashboardScreen extends StatefulWidget {
 }
 
 class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
-  int _selectedIndex = 4;
+  int _selectedIndex = 6;
 
   final List<Widget> _screens = [
     const DashboardView(),
-    const UsersView(),
+    const UserView(),
     const AgentView(),
     const ServicesView(),
     const OfferView(),
     const SettingsView(),
-    const SettingsView(),
+    const CarouselPageView(),
   ];
 
   @override
@@ -66,13 +66,13 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         index: 4,
                       ),
                       _buildNavItem(
-                        icon: Icons.settings_rounded,
-                        title: 'Settings',
+                        icon: Icons.shopping_cart,
+                        title: 'Orders',
                         index: 5,
                       ),
                       _buildNavItem(
-                        icon: Icons.settings_rounded,
-                        title: 'Settings',
+                        icon: Icons.image,
+                        title: 'Carousels',
                         index: 6,
                       ),
                     ],
