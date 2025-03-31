@@ -5,10 +5,10 @@ import 'package:fuel_delivary_app_admin/config/firebase_configurations.dart';
 import 'package:fuel_delivary_app_admin/model/offer_model.dart';
 import 'package:fuel_delivary_app_admin/utils/error/firebase_errors.dart';
 
-class UserService {
-  getUsers() async {
+class OfferService {
+  getOffers() async {
     try {
-      QuerySnapshot querySnapshot = await FireSetup.users.get();
+      QuerySnapshot querySnapshot = await FireSetup.offers.get();
       log(querySnapshot.toString());
       return querySnapshot.docs
           .map((e) => OfferModel.fromMap(e.data() as Map<String, dynamic>))

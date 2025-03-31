@@ -139,9 +139,8 @@ class AgentDialogs {
                   }
                   Navigator.pop(context);
                 } else {
-                  if (imageController.image != null &&
-                      agentServices.isNotEmpty &&
-                      _formKey.currentState!.validate()) {
+                  if (_formKey.currentState!.validate() &&
+                      services.isNotEmpty) {
                     agent.name = nameController.text;
                     agent.email = emailController.text;
                     agent.phone = phoneController.text;

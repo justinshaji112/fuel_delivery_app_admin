@@ -40,7 +40,6 @@ class AgentController extends GetxController {
   addAgent(
     XFile image,
     String name,
- 
     String phone,
     String email,
     List<String> services,
@@ -52,7 +51,6 @@ class AgentController extends GetxController {
           id: null,
           image: imageUrl,
           name: name,
-         
           email: email,
           phone: phone,
           status: true,
@@ -68,6 +66,7 @@ class AgentController extends GetxController {
     try {
       await agentService.removeAgent(id);
       state.value = AgentControllerState.success;
+      getAgents();
     } catch (e) {
       error = e.toString();
       state.value = AgentControllerState.error;
@@ -78,6 +77,7 @@ class AgentController extends GetxController {
     try {
       await agentService.updateAgent(agent, image);
       state.value = AgentControllerState.success;
+      getAgents();
     } catch (e) {
       error = e.toString();
       state.value = AgentControllerState.error;
@@ -96,12 +96,9 @@ class AgentController extends GetxController {
   }
 
   AgentDataSource getDatasource() {
-
-
     return AgentDataSource(
-        onEdit: (p0) {
-        
-        },
-        agents: filteredAgents.toList(), agentController: this);
+        onEdit: (p0) {},
+        agents: filteredAgents.toList(),
+        agentController: this);
   }
 }

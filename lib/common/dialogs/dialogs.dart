@@ -13,7 +13,7 @@ class CustomDialogs{
  }
 
 
-static Future<bool?> deleteAgent(BuildContext context,String title,String subtitle) {
+static Future<bool?> delete(BuildContext context,String title,String subtitle) {
 
    return showDialog<bool>(
       context: context,

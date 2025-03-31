@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel_delivary_app_admin/utils/constants/colors.dart';
 import 'package:fuel_delivary_app_admin/view/pages/agent_page.dart';
+import 'package:fuel_delivary_app_admin/view/pages/offer_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/service_page.dart';
 import 'package:fuel_delivary_app_admin/view/pages/users_page.dart';
 
@@ -12,14 +13,14 @@ class AdminDashboardScreen extends StatefulWidget {
 }
 
 class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 4;
 
   final List<Widget> _screens = [
     const DashboardView(),
     const UsersView(),
     const AgentView(),
     const ServicesView(),
-    const OffersManagementView(),
+    const OfferView(),
     const SettingsView(),
     const SettingsView(),
   ];
@@ -323,37 +324,6 @@ class ServicesManagementView extends StatelessWidget {
         child: Center(
           child: Text(
             'Services Management Content',
-            style: TextStyle(fontSize: 18),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class OffersManagementView extends StatelessWidget {
-  const OffersManagementView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: const Text(
-          'Offers Management',
-          style: TextStyle(
-            color: Color(0xFF2C3E50),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(20),
-        child: Center(
-          child: Text(
-            'Offers Management Content',
             style: TextStyle(fontSize: 18),
           ),
         ),

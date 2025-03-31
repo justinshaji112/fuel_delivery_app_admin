@@ -14,4 +14,6 @@ class FireSetup {
 
   static CollectionReference<Map<String, dynamic>> agents =
       FirebaseFirestore.instance.collection('agents');
+  static CollectionReference<Map<String, dynamic>> offers =
+      FirebaseFirestore.instance.collection('offers');
 }

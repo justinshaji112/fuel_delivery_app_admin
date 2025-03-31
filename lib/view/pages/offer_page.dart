@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:fuel_delivary_app_admin/controller/agent_controller.dart';
+import 'package:fuel_delivary_app_admin/controller/offer_controller.dart';
 import 'package:fuel_delivary_app_admin/controller/image_controller.dart';
-import 'package:fuel_delivary_app_admin/model/agent_model.dart';
+import 'package:fuel_delivary_app_admin/controller/offer_controller.dart';
+import 'package:fuel_delivary_app_admin/model/offer_model.dart';
 import 'package:fuel_delivary_app_admin/utils/validators/form_validators.dart';
-import 'package:fuel_delivary_app_admin/view/dialog/agent_dialogs.dart';
+import 'package:fuel_delivary_app_admin/view/dialog/offer_dailog.dart';
 import 'package:fuel_delivary_app_admin/view/widgets/add_service_button.dart';
 import 'package:fuel_delivary_app_admin/view/widgets/image_picker_widget.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class AgentView extends StatefulWidget {
-  const AgentView({super.key});
+class OfferView extends StatefulWidget {
+  const OfferView({super.key});
 
   @override
-  _AgentViewState createState() => _AgentViewState();
+  _OfferViewState createState() => _OfferViewState();
 }
 
-class _AgentViewState extends State<AgentView> {
+class _OfferViewState extends State<OfferView> {
   final TextEditingController _searchController = TextEditingController();
 
-  List<String> services = [
-    "Car wash",
-    "Deep clean",
-    "Tire change",
-    "EV charge",
-  ];
 
-  AgentController agentController = Get.put(AgentController());
+  OfferController offerController = Get.put(OfferController());
 
   ImageController imageController = ImageController();
 
@@ -34,14 +29,13 @@ class _AgentViewState extends State<AgentView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agents Management'),
+        title: const Text('Offers Management'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
-            onPressed: () => AgentDialogs.addEditAgentDialog(context,
-                agentController: agentController,
-                imageController: imageController,
-                services: services),
+            onPressed: () => OfferDialog.addEditOfferDialog(context,
+                offerController: offerController,
+                ),
           ),
         ],
       ),
@@ -54,23 +48,23 @@ class _AgentViewState extends State<AgentView> {
             TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Search agents...',
+                hintText: 'Search offers...',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               onChanged: (v) {
-                agentController.filterAgents(v);
+                offerController.filterOffers(v);
               },
             ),
             const SizedBox(height: 16),
 
-            // Agents Data Table
+            // Offers Data Table
             Obx(() {
               return Expanded(
-                child: agentController.state.value ==
-                        AgentControllerState.success
+                child: offerController.state.value ==
+                        ControllerStates.success
                     ? Card(
                         elevation: 4,
                         child: SingleChildScrollView(
@@ -78,20 +72,20 @@ class _AgentViewState extends State<AgentView> {
                             columns: const [
                               DataColumn(label: Text('ID')),
                               DataColumn(label: Text('Name')),
-                              DataColumn(label: Text('Email')),
-                              DataColumn(label: Text('Phone')),
+                              DataColumn(label: Text('Offer')),
+                              DataColumn(label: Text('Price range')),
                               DataColumn(label: Text('Status')),
                               DataColumn(label: Text('Actions')),
                             ],
-                            source: agentController.getDatasource(),
+                            source: offerController.getDatasource(),
                             rowsPerPage: 13,
                             dataRowHeight: 50,
                           ),
                         ),
                       )
-                    : agentController.state.value == AgentControllerState.error
+                    : offerController.state.value == ControllerStates.error
                         ? Center(
-                            child: Text(agentController.error!),
+                            child: Text(offerController.error!),
                           )
                         : const Center(
                             child: CircularProgressIndicator(),
@@ -104,4 +98,3 @@ class _AgentViewState extends State<AgentView> {
     );
   }
 }
-//
